@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-serif: 'Lora', 'Georgia', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --tb-orange: #f97316;
+  --tb-orange-dark: #ea580c;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8faff;
+  color: #1a1a2e;
+  overflow-x: hidden;
+}
+
+/* Serif font style for book content reading */
+.font-serif-book {
+  font-family: var(--font-serif);
+}
+
+/* Light scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ========== 3D BOOK READER STYLES ========== */
+.book-perspective {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.book-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.book-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0,0,0,0.05);
+  transform-style: preserve-3d;
+  border: 1px solid #e2e8f0;
+}
+
+/* Left & Right Pages */
+.book-page-half {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: #fffef9;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.04);
+}
+
+.book-page-half.left-page {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.book-page-half.right-page {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Hinge Shadow */
+.book-spine-shadow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.18) 50%,
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* Flipping Sheet Container */
+.flipping-sheet {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.flipping-sheet.right-to-left {
+  right: 0;
+  transform-origin: left center;
+}
+
+.flipping-sheet.left-to-right {
+  left: 0;
+  transform-origin: right center;
+}
+
+.single-page-mode .flipping-sheet {
+  width: 100%;
+}
+
+.flipping-sheet.flipped-rtl {
+  transform: rotateY(-180deg);
+}
+
+.flipping-sheet.flipped-ltr {
+  transform: rotateY(180deg);
+}
+
+/* Page Faces */
+.page-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.06);
+  background: #fffef9;
+}
+
+.page-face.face-front {
+  z-index: 2;
+}
+
+.page-face.face-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Mobile viewport adjustments */
+@media (max-width: 768px) {
+  .book-page-half {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .book-perspective {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .book-viewport {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .book-wrapper {
+    border-radius: 8px;
+  }
+}
+
+/* Highlight overlays */
+.text-layer-highlight {
+  position: absolute;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.text-layer-highlight.yellow { background-color: rgba(234, 179, 8, 0.35); }
+.text-layer-highlight.green  { background-color: rgba(34, 197, 94, 0.35); }
+.text-layer-highlight.blue   { background-color: rgba(59, 130, 246, 0.35); }
+.text-layer-highlight.pink   { background-color: rgba(236, 72, 153, 0.35); }
+
+/* Testbook gradient */
+.tb-gradient {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+}
+
+.tb-text-gradient {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

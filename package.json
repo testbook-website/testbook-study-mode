@@ -1,0 +1,17 @@
+{
+  "name": "testbook-study-mode",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npx concurrently -k -n \"client,server\" -c \"cyan,green\" \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "install:all": "npm install --legacy-peer-deps && npm install --prefix client --legacy-peer-deps && npm install --prefix server --legacy-peer-deps",
+    "build": "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

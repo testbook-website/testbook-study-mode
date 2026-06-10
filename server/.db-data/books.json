@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "2i3figbni",
+    "createdAt": "2026-06-09T10:19:46.100Z",
+    "title": "UGC NET Commerce",
+    "subject": "Commerce",
+    "description": "",
+    "thumbnailUrl": "",
+    "pdfUrl": "/uploads/1781000386095-exav3nv.pdf",
+    "publishedBy": "Admin",
+    "isPublished": true,
+    "updatedAt": "2026-06-10T14:32:43.723Z"
+  },
+  {
+    "_id": "eemjz6g0d",
+    "createdAt": "2026-06-09T10:49:48.473Z",
+    "title": "UGC NET Paper 1",
+    "subject": "Paper 1",
+    "description": "",
+    "thumbnailUrl": "",
+    "pdfUrl": "/uploads/1781002188470-e80106q.pdf",
+    "publishedBy": "Admin",
+    "isPublished": true,
+    "updatedAt": "2026-06-10T14:32:42.183Z"
+  },
+  {
+    "_id": "l9m0qmgo1",
+    "createdAt": "2026-06-09T11:05:54.813Z",
+    "title": "UGC NET Paper 1 Testbook",
+    "subject": "Paper 1 ",
+    "description": "",
+    "thumbnailUrl": "/uploads/1781003154811-xbn2q1h.png",
+    "pdfUrl": "/uploads/1781003154807-eeonmfz.pdf",
+    "publishedBy": "Admin",
+    "isPublished": true
+  },
+  {
+    "_id": "cixzmo9gt",
+    "createdAt": "2026-06-10T14:30:51.755Z",
+    "title": "SSC English Smartbook ",
+    "subject": "English",
+    "description": "",
+    "thumbnailUrl": "/uploads/1781101851748-0im55z5.png",
+    "pdfUrl": "/uploads/1781101851726-0xoczat.pdf",
+    "publishedBy": "Admin",
+    "isPublished": true,
+    "updatedAt": "2026-06-10T14:32:39.698Z"
+  },
+  {
+    "_id": "ii28rudic",
+    "createdAt": "2026-06-10T14:34:16.905Z",
+    "title": "IBPS PO English Book",
+    "subject": "English",
+    "description": "IBPS PO English Book Consists of 5000+ MCQ which are curated by Experienced SME",
+    "thumbnailUrl": "/uploads/1781102056893-cv1amtu.webp",
+    "pdfUrl": "/uploads/1781102056844-0j8plgy.pdf",
+    "publishedBy": "Admin",
+    "isPublished": true
+  }
+]

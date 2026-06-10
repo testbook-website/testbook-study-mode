@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "l96dhyvm9",
+    "createdAt": "2026-06-10T15:35:15.364Z",
+    "topic": "Percentages",
+    "subject": "Maths",
+    "audioUrl": "/uploads/1781105715355-qhksaks.mp3",
+    "keyPoints": [],
+    "webLink": "https://testbook.com/objective-questions/mcq-on-percentage--5eea6a1039140f30f369e80b"
+  },
+  {
+    "_id": "z5m8lkz3w",
+    "createdAt": "2026-06-10T15:36:10.897Z",
+    "topic": "Fundamental Rights",
+    "subject": "Polity",
+    "audioUrl": "/uploads/1781105770892-dt1xexb.mp3",
+    "keyPoints": [],
+    "webLink": "https://testbook.com/ias-preparation/fundamental-rights-in-india"
+  },
+  {
+    "_id": "7zbjdf3cu",
+    "createdAt": "2026-06-10T15:36:44.929Z",
+    "topic": "Preamble of India",
+    "subject": "Polity",
+    "audioUrl": "/uploads/1781105804926-70abph2.mp3",
+    "keyPoints": [],
+    "webLink": "https://testbook.com/ias-preparation/preamble-to-the-indian-constitution"
+  }
+]

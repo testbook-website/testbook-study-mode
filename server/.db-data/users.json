@@ -1,0 +1,122 @@
+[
+  {
+    "_id": "ft5b5k5z2",
+    "createdAt": "2026-06-09T10:19:15.978Z",
+    "name": "Pavan",
+    "email": "medeti.prasad@testbook.com",
+    "password": "$2a$10$2MglbIJSbTiQw0Hf/OTypOkrlOwWkoooPJsY.gjPViSLtds0y.0PS",
+    "role": "admin"
+  },
+  {
+    "_id": "r8rcmucos",
+    "createdAt": "2026-06-10T13:44:55.358Z",
+    "name": "Pavan",
+    "email": "psp.medeti@gmail.com",
+    "password": "$2a$10$xJQtzxdJSFqGqnVhrE6mP.XAjEi5DR.aDupcJBOMdzPAiDd9yJdOS",
+    "role": "student"
+  },
+  {
+    "_id": "t9lj1mho3",
+    "createdAt": "2026-06-10T13:50:15.249Z",
+    "name": "ABC",
+    "email": "abc@gmail.com",
+    "password": "$2a$10$2H9jlhMxhOaIQrdHFqknpumbOtv1PZCqgTkOQe8i5IeZMozqBb/D2",
+    "role": "student"
+  },
+  {
+    "_id": "ckz7q0ogy",
+    "createdAt": "2026-06-10T13:50:24.551Z",
+    "name": "ABC",
+    "email": "abcd@gmail.com",
+    "password": "$2a$10$Vf.ixnTXwnIC4zwac4AYneTU5/hmGZzcATTBqLw2rK5O4MQSdq5jO",
+    "role": "student"
+  },
+  {
+    "_id": "1e8wj5y7u",
+    "createdAt": "2026-06-10T13:50:36.862Z",
+    "name": "Pavan Shiva",
+    "email": "pavanshiva.7730@gmail.com",
+    "password": "$2a$10$lAgYRQBc5/8LPG/hRmIDmOIPLWp5mSi315ShSD4JHWZP2gzHHc05W",
+    "role": "student"
+  },
+  {
+    "_id": "gbznlof4q",
+    "createdAt": "2026-06-10T13:50:53.671Z",
+    "name": "Pavan Shiva",
+    "email": "pspmedeti@gmail.com",
+    "password": "$2a$10$5Vr0.InkavyW5laVUt4rZOK5hWhjoDZ4azPUx9bg6dSSKhvRYnFkq",
+    "role": "student"
+  },
+  {
+    "_id": "0ef0ysdhj",
+    "createdAt": "2026-06-10T13:51:56.552Z",
+    "name": "Pavan Shiva",
+    "email": "pspmedeti2@gmail.com",
+    "password": "$2a$10$oGvEaDWla4t0H1rzXZg6mOT7fP1F1T6XfjoWcLhBX44LyljivY1Eq",
+    "role": "student"
+  },
+  {
+    "_id": "s0amguvwg",
+    "createdAt": "2026-06-10T13:52:32.668Z",
+    "name": "Pavan",
+    "email": "test7730@gmail.com",
+    "password": "$2a$10$at4O2IcaweRCMVxkut9BOe7nVmx7jdLKBLi6JX1DhIVF7Hybr48m2",
+    "role": "student"
+  },
+  {
+    "_id": "tw7tep443",
+    "createdAt": "2026-06-10T13:54:27.794Z",
+    "name": "Bot Test",
+    "email": "bottest1@example.com",
+    "password": "$2a$10$FFn4n88fOdAt9KoSNwdriu0jY4qrbYllzV0LbzkFOfT5uWfxdLCjK",
+    "role": "student"
+  },
+  {
+    "_id": "9875f31u4",
+    "createdAt": "2026-06-10T13:56:37.346Z",
+    "name": "Pavan",
+    "email": "finaltest@gmail.com",
+    "password": "$2a$10$4YOz4ZHZUrD5lue9/x31LeheCCXIbnLRQRSm7Yd91dBOi16gXiFPW",
+    "role": "student"
+  },
+  {
+    "_id": "txuxkm3i5",
+    "createdAt": "2026-06-10T13:59:41.019Z",
+    "name": "Bot Test",
+    "email": "bottest99@example.com",
+    "password": "$2a$10$xMMQDG2gOFP1A1m2EHA8Eel1eTFHVSZf8pr7dflNQ39Xbi6V6.Thi",
+    "role": "student"
+  },
+  {
+    "_id": "aiwatrszc",
+    "createdAt": "2026-06-10T14:01:16.659Z",
+    "name": "Work Test",
+    "email": "workstest@gmail.com",
+    "password": "$2a$10$1YXLIYCEExkS9AHKljTbe.RTVfmt99e/BJFHWLwpr5sT7PkvPuK3y",
+    "role": "student"
+  },
+  {
+    "_id": "q5vtlqt7p",
+    "createdAt": "2026-06-10T14:01:41.411Z",
+    "name": "sms",
+    "email": "sms@gmail.com",
+    "password": "$2a$10$1QfKqWS0kygNAa.Jyjd.U.F20tGmkDVGacpRt5mRiUKYYicU9jMrK",
+    "role": "student"
+  },
+  {
+    "_id": "1ujsm8ggz",
+    "createdAt": "2026-06-10T14:04:51.772Z",
+    "name": "Pavan Please",
+    "email": "please@gmail.com",
+    "password": "$2a$10$7RCFKDRSRMQqyKWsnpd6Wuk35HQ0NhLXo8vIxNTO/oHpZ0VCuAAMe",
+    "role": "student"
+  },
+  {
+    "_id": "rc1iakx14",
+    "createdAt": "2026-06-10T14:27:54.899Z",
+    "name": "Pavan",
+    "email": "pavan@gmail.com",
+    "password": "$2a$10$sKebMn0WXwn7N8EczeF5G.fcxm/f71cs.ZV7MIUWd73OFrlEBdaem",
+    "role": "student"
+  }
+]

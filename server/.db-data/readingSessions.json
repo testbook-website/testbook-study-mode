@@ -1,0 +1,57 @@
+[
+  {
+    "_id": "qt0fiblfz",
+    "createdAt": "2026-06-09T10:19:53.753Z",
+    "userId": "ft5b5k5z2",
+    "bookId": "2i3figbni",
+    "currentPage": 25,
+    "totalPages": 32,
+    "studyTimeSeconds": 794,
+    "lastReadAt": "2026-06-09T10:33:23.789Z",
+    "updatedAt": "2026-06-09T10:33:23.790Z"
+  },
+  {
+    "_id": "2xmbmd27n",
+    "createdAt": "2026-06-09T10:49:55.991Z",
+    "userId": "ft5b5k5z2",
+    "bookId": "eemjz6g0d",
+    "currentPage": 11,
+    "totalPages": 32,
+    "studyTimeSeconds": 686,
+    "lastReadAt": "2026-06-09T12:29:52.761Z",
+    "updatedAt": "2026-06-09T12:29:52.761Z"
+  },
+  {
+    "_id": "3mykwcwmx",
+    "createdAt": "2026-06-09T11:06:01.651Z",
+    "userId": "ft5b5k5z2",
+    "bookId": "l9m0qmgo1",
+    "currentPage": 17,
+    "totalPages": 32,
+    "studyTimeSeconds": 1894,
+    "lastReadAt": "2026-06-10T15:14:31.517Z",
+    "updatedAt": "2026-06-10T15:14:31.518Z"
+  },
+  {
+    "_id": "p402pb00p",
+    "createdAt": "2026-06-10T13:45:04.388Z",
+    "userId": "r8rcmucos",
+    "bookId": "l9m0qmgo1",
+    "currentPage": 3,
+    "totalPages": 32,
+    "studyTimeSeconds": 67,
+    "lastReadAt": "2026-06-10T13:49:58.816Z",
+    "updatedAt": "2026-06-10T13:49:58.817Z"
+  },
+  {
+    "_id": "iu2rpvuv4",
+    "createdAt": "2026-06-10T14:05:54.769Z",
+    "userId": "1ujsm8ggz",
+    "bookId": "l9m0qmgo1",
+    "currentPage": 10,
+    "totalPages": 32,
+    "studyTimeSeconds": 745,
+    "lastReadAt": "2026-06-10T14:24:15.032Z",
+    "updatedAt": "2026-06-10T14:24:15.034Z"
+  }
+]
