@@ -6,7 +6,7 @@ import Timer from './Timer';
 import { 
   ArrowLeft, ChevronLeft, ChevronRight, Bookmark, Highlighter, 
   MessageSquare, Sparkles, AlertCircle, BookmarkCheck, FileText, Send, X,
-  ZoomIn, ZoomOut, BookOpen
+  ZoomIn, ZoomOut, BookOpen, Maximize, Minimize
 } from 'lucide-react';
 
 // Initialize PDF.js Worker via CDN unpkg matching exact package version
@@ -38,7 +38,8 @@ export default function Reader() {
   const [pageAspect, setPageAspect] = useState(0.707); // Default A4 aspect ratio (1 / sqrt(2))
   const [bookDimensions, setBookDimensions] = useState({ width: 0, height: 0 });
   const [viewMode, setViewMode] = useState('double'); // 'double' or 'single'
-  const [zoom, setZoom] = useState(1.0); // 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5
+  const [zoom, setZoom] = useState(1.0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // 3D Flip animation state
   const [animationState, setAnimationState] = useState(null); // 'flipping-next' or 'flipping-prev'
@@ -88,8 +89,15 @@ export default function Reader() {
   // Listen to window size changes
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
+    
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
   }, []);
 
   // Resize observer to handle panel toggles and window resizes
@@ -683,7 +691,7 @@ export default function Reader() {
       )}
 
       {/* TOP HEADER CONTROLS */}
-      <header className="border-b border-orange-100 bg-white/90 backdrop-blur-md py-3 px-6 flex items-center justify-between shrink-0 shadow-sm">
+      <header className="hidden">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/')}
@@ -787,7 +795,7 @@ export default function Reader() {
       <div className="flex-1 flex overflow-hidden relative">
         
         {/* CENTER PDF READER */}
-        <div className="flex-1 flex flex-col items-center overflow-hidden bg-slate-100" onMouseUp={handleMouseUpTextSelection}
+        <div className="flex-1 flex flex-col items-center overflow-hidden bg-[#e0e0e0]" onMouseUp={handleMouseUpTextSelection}
           style={{ gap: 0 }}>
              {loading ? (
             <div className="flex-1 flex flex-col items-center justify-center">
@@ -804,11 +812,57 @@ export default function Reader() {
             /* Two-page book spread (single on mobile) — fills all available space */
             <div
               className={`flex-1 w-full relative ${zoom === 1.0 ? 'overflow-hidden flex items-center justify-center' : 'overflow-auto'}`}
-              style={{ padding: isMobile ? '8px' : '12px 48px' }}
+              style={{ padding: 0 }}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-            >
+            
+onDoubleClick={(e) => { e.preventDefault(); setZoom(z => z > 1.0 ? 1.0 : 2.0); }}
+>
+
+              {/* TOP LEFT ACTION BUTTONS */}
+              <div className="absolute top-4 left-6 z-[60] flex flex-col items-start gap-2 pointer-events-auto">
+                <div className="flex bg-white/90 backdrop-blur-md border border-gray-200 rounded-full shadow-md overflow-hidden">
+                  <button onClick={() => setZoom(z => Math.max(1.0, z - 0.25))} className="p-2 text-gray-600 hover:bg-gray-50 hover:text-orange-500 transition-colors cursor-pointer" title="Zoom Out">
+                    <ZoomOut className="w-4 h-4" />
+                  </button>
+                  <div className="w-px bg-gray-200 my-1"></div>
+                  <button onClick={() => setZoom(z => Math.min(3.0, z + 0.25))} className="p-2 text-gray-600 hover:bg-gray-50 hover:text-orange-500 transition-colors cursor-pointer" title="Zoom In">
+                    <ZoomIn className="w-4 h-4" />
+                  </button>
+                </div>
+                
+                <button onClick={() => { setViewMode(viewMode === 'double' ? 'single' : 'double'); setZoom(1.0); }} className="px-3 py-2 bg-white/90 backdrop-blur-md border border-gray-200 rounded-full shadow-md text-gray-600 hover:bg-gray-50 hover:text-orange-500 transition-colors font-bold text-xs flex items-center gap-1.5 cursor-pointer" title="Toggle Layout">
+                  <BookOpen className="w-4 h-4" />
+                  {viewMode === 'double' ? '2-Page' : '1-Page'}
+                </button>
+                
+                <button onClick={() => {
+                  if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => console.log(err));
+                  } else {
+                    if (document.exitFullscreen) {
+                      document.exitFullscreen();
+                    }
+                  }
+                }} className="px-3 py-2 bg-white/90 backdrop-blur-md border border-gray-200 rounded-full shadow-md text-gray-600 hover:bg-gray-50 hover:text-orange-500 transition-colors font-bold text-xs flex items-center gap-1.5 cursor-pointer" title="Toggle Fullscreen">
+                  {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
+                  {isFullscreen ? 'Exit' : 'Full-View'}
+                </button>
+              </div>
+
+              {/* TOP RIGHT ACTION BUTTONS */}
+              <div className="absolute top-4 right-6 z-[60] flex flex-col items-end gap-2 pointer-events-auto">
+                <button onClick={() => { setSummaryRange({ start: pageNumber, end: Math.min(pageNumber + 2, numPages) }); setShowSummaryModal(true); }} className="p-2 bg-white/90 backdrop-blur-md border border-gray-200 text-orange-500 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" title="Summarise Pages">
+                  <Sparkles className="w-4 h-4" />
+                </button>
+                <button onClick={() => setActivePanel(activePanel === 'annotations' ? null : 'annotations')} className="p-2 bg-white/90 backdrop-blur-md border border-gray-200 text-gray-600 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer hover:text-orange-500" title="Notes & Marks">
+                  <FileText className="w-4 h-4" />
+                </button>
+                <button onClick={() => setActivePanel(activePanel === 'doubts' ? null : 'doubts')} className="p-2 bg-white/90 backdrop-blur-md border border-gray-200 text-gray-600 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer hover:text-orange-500" title="Ask Doubt">
+                  <MessageSquare className="w-4 h-4" />
+                </button>
+              </div>
               {/* Prev arrow */}
               <button
                 onClick={handlePrevPage}
@@ -844,8 +898,8 @@ export default function Reader() {
                           <BookmarkCheck className="w-7 h-9 fill-current" />
                         </div>
                       )}
-                      <div className="w-full h-full flex items-center justify-center" style={{ padding: isMobile ? '6px' : '8px' }}>
-                        <canvas ref={leftCanvasRef} className="pointer-events-none" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%' }} />
+                      <div className="w-full h-full flex items-center justify-center" style={{ overflow: 'hidden' }}>
+                        <canvas ref={leftCanvasRef} className="pointer-events-none" style={{ display: 'block', width: '100%', height: '100%', transform: 'scale(1.06)', transformOrigin: 'center center' }} />
                       </div>
                       <div className="absolute bottom-1.5 left-3 text-[9px] text-gray-400 font-bold uppercase tracking-wider select-none">
                         Page {pageNumber}
@@ -865,8 +919,8 @@ export default function Reader() {
                                 <BookmarkCheck className="w-7 h-9 fill-current" />
                               </div>
                             )}
-                            <div className="w-full h-full flex items-center justify-center" style={{ padding: '8px' }}>
-                              <canvas ref={rightCanvasRef} className="pointer-events-none" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%' }} />
+                            <div className="w-full h-full flex items-center justify-center" style={{ overflow: 'hidden' }}>
+                              <canvas ref={rightCanvasRef} className="pointer-events-none" style={{ display: 'block', width: '100%', height: '100%', transform: 'scale(1.06)', transformOrigin: 'center center' }} />
                             </div>
                             <div className="absolute bottom-1.5 right-3 text-[9px] text-gray-400 font-bold uppercase tracking-wider select-none">
                               Page {pageNumber + 1}
@@ -884,11 +938,11 @@ export default function Reader() {
                     {/* 3D FLIP SHEET */}
                     {animationState && (
                       <div className={`flipping-sheet ${animationState === 'flipping-next' ? 'right-to-left' : 'left-to-right'} ${isFlipped ? (animationState === 'flipping-next' ? 'flipped-rtl' : 'flipped-ltr') : ''}`}>
-                        <div className="page-face face-front flex items-center justify-center" style={{ padding: '8px' }}>
-                          <canvas ref={flipFrontCanvasRef} className="pointer-events-none" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%' }} />
+                        <div className="page-face face-front flex items-center justify-center" style={{ overflow: 'hidden' }}>
+                          <canvas ref={flipFrontCanvasRef} className="pointer-events-none" style={{ display: 'block', width: '100%', height: '100%', transform: 'scale(1.06)', transformOrigin: 'center center' }} />
                         </div>
-                        <div className="page-face face-back flex items-center justify-center" style={{ padding: '8px' }}>
-                          <canvas ref={flipBackCanvasRef} className="pointer-events-none" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%' }} />
+                        <div className="page-face face-back flex items-center justify-center" style={{ overflow: 'hidden' }}>
+                          <canvas ref={flipBackCanvasRef} className="pointer-events-none" style={{ display: 'block', width: '100%', height: '100%', transform: 'scale(1.06)', transformOrigin: 'center center' }} />
                         </div>
                       </div>
                     )}
@@ -910,7 +964,7 @@ export default function Reader() {
 
           {/* READER BOTTOM NAVIGATION */}
           {book && (
-            <div className="w-full max-w-md flex flex-col items-center gap-2 py-3 px-4 shrink-0 select-none border-t border-slate-200 bg-slate-100">
+            <div className="hidden">
               <div className="flex items-center gap-4">
                 <button
                   onClick={handlePrevPage}
