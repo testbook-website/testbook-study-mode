@@ -31,6 +31,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mount API routers
 app.use('/api', router);
 
+// Serve the frontend (client/dist) statically
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientDistPath));
+
+app.get('*', (req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    return res.status(404).json({ message: 'API route not found' });
+  }
+  res.sendFile(path.join(clientDistPath, 'index.html'));
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', time: new Date().toISOString() });
